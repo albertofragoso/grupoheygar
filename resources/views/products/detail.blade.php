@@ -192,7 +192,7 @@
         <!--<responses :product="{{ $product->id }}"></responses>-->
         <div id="new-updates" class="card updates recent-updated">
           <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box" class="">Comentarios</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box" class=""><i class="fa fa-angle-down"></i></a>
+            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box" class="">Comentarios</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box" class=""><i class="icon-ios-email-outline"></i></a>
           </div>
           <div id="updates-box" role="tabpanel" class="collapse" style="">
             <ul class="news list-unstyled">

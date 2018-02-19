@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
   //
   Route::get('/notifications', 'UsersController@notifications');
   Route::get('/sucursales/{id}', 'UsersController@sucursales');
+
+  Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 });
 
 Auth::routes();
