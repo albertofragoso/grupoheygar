@@ -42,9 +42,9 @@
         <div class="admin-menu">
           <h5 class="sidenav-heading">Redes sociales</h5>
           <ul id="side-admin-menu" class="side-menu list-unstyled">
-            <li><a href="https://www.facebook.com/Lonas-Heygar-158748178254821/"> <i class="icon-fb"> </i>Facebook</a></li>
+            <li><a href="https://www.facebook.com/Lonas-Heygar-158748178254821/" target="_blank"> <i class="icon-fb"> </i>Facebook</a></li>
             <li><a href="#"> <i class="icon-twitter"> </i>Twitter</a></li>
-            <li> <a href="https://www.instagram.com/explore/locations/164824133531446/grupo-heygar/"> <i class="icon-instagram"> </i>Instagram</a></li>
+            <li> <a href="https://www.instagram.com/explore/locations/164824133531446/grupo-heygar/" target="_blank"> <i class="icon-instagram"> </i>Instagram</a></li>
           </ul>
         </div>
       </div>
