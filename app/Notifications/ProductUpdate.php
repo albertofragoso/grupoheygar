@@ -35,7 +35,13 @@ class ProductUpdate extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+
+        if($notifiable->email == "mercadotecnia@grupowitt.com") {
+          return ['database'];
+        }
+        else {
+          return ['mail', 'database'];
+        }
     }
 
     /**
