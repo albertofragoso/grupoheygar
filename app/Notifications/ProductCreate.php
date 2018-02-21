@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ProductMessage extends Notification
+class ProductCreate extends Notification
 {
     use Queueable;
 
@@ -35,7 +35,6 @@ class ProductMessage extends Notification
      */
     public function via($notifiable)
     {
-        //return ['mail', 'database', 'broadcast'];
         return ['mail', 'database'];
     }
 
@@ -47,12 +46,12 @@ class ProductMessage extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->subject('Tienes un nuevo comentario de algún trabajo')
-                    ->greeting('¡Hola, '. $notifiable->name .'!')
-                    ->line('El cliente '. $this->user->name . ' ha comentado su producto.')
-                    ->action('Revisa qué opinó', url('/products/' .$this->product->id))
-                    ->salutation('Gracias por trabajar con Grupo Heygar');
+      return (new MailMessage)
+                  ->subject('Se ha iniciado tu pedido')
+                  ->greeting('¡Hola, '. $notifiable->name .'!')
+                  ->line('Hemos iniciado el trabajo de tu producto.')
+                  ->action('Revisa su status', url('/products/' .$this->product->id))
+                  ->salutation('Gracias por trabajar con Grupo Heygar');
     }
 
     /**
@@ -61,18 +60,11 @@ class ProductMessage extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
-        return [
-            'user' => $this->user,
-            'product' => $this->product,
-        ];
-    }
-
-    /*public function toBroadcast($notifiable)
-    {
-      return new BroadcastMessage([
-        'data' => $this->toArray($notifiable)
-      ]);
-    }*/
+     public function toArray($notifiable)
+     {
+         return [
+             'user' => $this->user,
+             'product' => $this->product,
+         ];
+     }
 }

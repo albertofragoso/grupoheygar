@@ -66,7 +66,7 @@
           <h2 class="display h4">Lista de últimos clientes</h2>
           <p>Últimos clientes agregados.</p>
           <ul class="check-lists list-unstyled">
-            @forelse($customers as $krey=>$customer)
+            @forelse($customers as $key=>$customer)
             <li class="d-flex align-items-center">
               <input type="checkbox" id="list-{{ ++$key }}" name="list-{{ $key }}" class="form-control-custom">
               <label for="list-{{ $key }}"><a href="/customers/{{ $customer->id }}">{{ $customer->name }}</a></label>

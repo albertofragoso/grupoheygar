@@ -7,6 +7,7 @@ use App\User;
 use App\Response;
 use App\Notifications\ProductMessage;
 use App\Notifications\ProductUpdate;
+use App\Notifications\ProductCreate;
 use App\Http\Requests\CreateProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -71,6 +72,9 @@ class ProductsController extends Controller
        'sucursal_id' => $sucursal,
       ]);
     }
+
+    $customer = User::where('id', $product->user_id)->firstOrFail();
+    $customer->notify(new ProductCreate($user, $product));
 
     return redirect('/products')->withSuccess('Trabajo agregado.');
   }
