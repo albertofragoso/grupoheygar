@@ -46,12 +46,12 @@ class ProductCreate extends Notification
      */
     public function toMail($notifiable)
     {
-      return (new MailMessage)
-                  ->subject('Se ha iniciado tu pedido')
-                  ->greeting('¡Hola, '. $notifiable->name .'!')
-                  ->line('Hemos iniciado el trabajo de tu producto.')
-                  ->action('Revisa su status', url('/products/' .$this->product->id))
-                  ->salutation('Gracias por trabajar con Grupo Heygar');
+      if ($notifiable->id == 10) {
+        return (new \App\Mail\ProductCreate($notifiable->name, $this->product))->to($notifiable->routeNotificationFor('mail'))->cc('jorgebuhl@gmail.com');
+      }
+      else {
+        return (new \App\Mail\ProductCreate($notifiable->name, $this->product))->to($notifiable->routeNotificationFor('mail'));
+      }
     }
 
     /**

@@ -2,12 +2,14 @@
 
 namespace App\Notifications;
 
+use Mail;
 use App\User;
 use App\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+
 
 class ProductUpdate extends Notification
 {
@@ -36,7 +38,7 @@ class ProductUpdate extends Notification
     public function via($notifiable)
     {
 
-        if($notifiable->email == "mercadotecnia@grupowitt.com") {
+        if($notifiable->id == 5) {
           return ['database'];
         }
         else {
@@ -52,12 +54,13 @@ class ProductUpdate extends Notification
      */
     public function toMail($notifiable)
     {
-      return (new MailMessage)
-                  ->subject('Se ha actualizado tu pedido')
-                  ->greeting('¡Hola, '. $notifiable->name .'!')
-                  ->line('Hemos avanzado en el proceso de entrega de tu producto.')
-                  ->action('Revisa su status', url('/products/' .$this->product->id))
-                  ->salutation('Gracias por trabajar con Grupo Heygar');
+        if ($notifiable->id == 10) {
+          return (new \App\Mail\ProductUpdate($notifiable->name, $this->product))->to($notifiable->routeNotificationFor('mail'))->cc('jorgebuhl@gmail.com');
+        }
+        else {
+          return (new \App\Mail\ProductUpdate($notifiable->name, $this->product))->to($notifiable->routeNotificationFor('mail'));
+        }
+
     }
 
     /**
