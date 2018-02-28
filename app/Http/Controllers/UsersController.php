@@ -50,7 +50,7 @@ class UsersController extends Controller
       'email' => $request->input('email'),
       'phone' => $request->input('phone'),
       'image' => 'http://grupoheygar.com/wp-content/uploads/2017/03/cropped-LOG.fw_-192x192.png',
-      'password' => Hash::make('grupoheygar'),
+      'password' => Hash::make(env('APP_PASSWORD')),
       'owner' => $usuario->group,
     ]);
 
