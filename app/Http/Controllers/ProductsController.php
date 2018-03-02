@@ -21,11 +21,28 @@ class ProductsController extends Controller
     $count = count($notifications);
     //$products = Product::all();
     $user = $request->user();
-    $products = Product::where('owner', $user->group)->get();
+    $products = Product::where('owner', $user->group)->where('percentage', '<' ,100)->get();
     //$users = User::where('roll', 0)->get();
     $users = User::where('roll', 0)->where('owner', $user->group)->get();
 
     return view('products.list', [
+      'products' => $products,
+      'users' => $users,
+      'notifications' => $notifications,
+      'count' => $count,
+    ]);
+  }
+
+  public function done(Request $request)
+  {
+    $notifications = $request->user()->notifications->take(5);
+    $count = count($notifications);
+    $user = $request->user();
+    $products = Product::where('owner', $user->group)->where('percentage', 100)->get();
+
+    $users = User::where('roll', 0)->where('owner', $user->group)->get();
+
+    return view('products.done', [
       'products' => $products,
       'users' => $users,
       'notifications' => $notifications,
@@ -59,7 +76,6 @@ class ProductsController extends Controller
       'name' => $request->input('name'),
       'percentage' => 0,
       'done' => 0,
-      'bill' => $request->input('bill'),
       'stage' => $request->input('stage'),
       'finished_at' => $request->input('finished_at'),
       'user_id' => $request->input('customer'),
@@ -135,6 +151,7 @@ class ProductsController extends Controller
      'percentage' => $request->input('percentage'),
      'stage' => $request->input('stage'),
      'updated_at' => date('Y-m-d H:i:s'),
+     'bill' => $request->input('bill'),
      //'finished_at' => $request->input('finished_at'),
     ]);
 

@@ -148,7 +148,7 @@
                           <p>{{ $product->name }}.</p>
                             <div class="form-group">
                               <label>Porcentaje de avance</label>
-                              <input type="number" name="percentage" value="{{ $product->percentage }}" class="form-control" min="1" max="100">
+                              <input type="number" id="percentage" name="percentage" value="{{ $product->percentage }}" class="form-control" min="1" max="100" onchange="checkPercentage()">
                             </div>
                             <div class="form-group">
                               <label>Etapa</label>
@@ -157,6 +157,12 @@
                             <div class="form-group">
                               <label>Comentarios</label>
                               <input type="text" name="message" placeholder="..." class="form-control form-control-lg">
+                            </div>
+                            <div class="form-group">
+                              <div class="i-checks">
+                                <input id="checkboxCustom1" name="bill" type="checkbox" class="form-control-custom" value="1" {{ $product->bill ? "checked='checked'" : "" }} disabled>
+                                <label for="checkboxCustom1">Facturación</label>
+                              </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -218,4 +224,15 @@
     </div>
   </div>
 </section>
+<script>
+checkPercentage();
+function checkPercentage(){
+  var percentage = document.getElementById('percentage');
+  if (percentage.value === '100') {
+    document.getElementById("checkboxCustom1").disabled = false;
+  } else {
+    document.getElementById("checkboxCustom1").disabled = true;
+  }
+}
+</script>
 @endsection

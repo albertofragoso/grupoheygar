@@ -33,7 +33,12 @@
               @if (Auth::user()->roll)
                 <li><a href="/admin"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="/customers"> <i class="icon-grid"></i>Clientes </a></li>
-                <li><a href="/products"> <i class="icon-page"></i>Trabajos </a></li>
+                <li><a href="#formsDropdown" aria-expanded="false" data-toggle="collapse" class="collapsed"> Trabajos</a>
+                  <ul id="formsDropdown" class="list-unstyled collapse" style="">
+                    <li><a href="/products">En proceso</a></li>
+                    <li><a href="/products/done">Terminados</a></li>
+                  </ul>
+                </li>
               @else
                 <li><a href="/customers/{{ Auth::user()->id }}"> <i class="icon-user"></i>Mi cuenta </a></li>
               @endif

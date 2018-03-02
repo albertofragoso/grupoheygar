@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <ul class="breadcrumb">
       <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-      <li class="breadcrumb-item active">Trabajos</li>
+      <li class="breadcrumb-item active">Trabajos en proceso</li>
     </ul>
     <!-- Errors -->
     @if ($errors->any())
@@ -33,7 +33,7 @@
     <!--Fin success-->
     <div class="card">
       <div class="card-header" style="display:flex; justify-content:space-between;padding-bottom: 45px;">
-        <h4>Trabajos</h4>
+        <h4>Trabajos en proceso</h4>
         <!--Add work-->
         @if (Auth::user()->roll)
           <div class="form-group" style="margin-bottom:50px;">
@@ -79,12 +79,6 @@
                           <div class="form-group">
                             <label>Fecha de entrega</label>
                             <input type="date" placeholder="..." name="finished_at" class="form-control" required>
-                          </div>
-                          <div class="form-group">
-                            <div class="i-checks">
-                              <input id="checkboxCustom1" name="bill" type="checkbox" class="form-control-custom" value="1" checked="checked">
-                              <label for="checkboxCustom1">Facturación</label>
-                            </div>
                           </div>
                       </div>
                       <div class="modal-footer">

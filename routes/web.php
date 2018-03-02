@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/customers/create', 'UsersController@create')->middleware(CheckRoll::class);
   Route::post('/customers/{user}/update', 'UsersController@update')->middleware(CheckRoll::class);
   Route::get('/products', 'ProductsController@products')->middleware(CheckRoll::class);
+  Route::get('/products/done', 'ProductsController@done')->middleware(CheckRoll::class);
   Route::get('/products/{product}', 'ProductsController@detail')->middleware(CheckProduct::class);
   Route::post('/products/{product}/message', 'ProductsController@createMessage')->middleware(CheckProduct::class);
   Route::post('/products/create', 'ProductsController@create')->middleware(CheckRoll::class);
