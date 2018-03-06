@@ -43,7 +43,7 @@ class PagesController extends Controller
 
       $notifications = $request->user()->notifications->take(5);
       $count = count($notifications);
-      $products = Product::where('owner', $user->group)->orderBy('created_at', 'desc')->take(10)->get();
+      $products = Product::where('owner', $user->group)->where('percentage', '<' ,100)->orderBy('created_at', 'desc')->take(10)->get();
       //$customers = User::where('roll', 0)->orderBy('created_at', 'desc')->get();
       $customers = User::where('roll', 0)->where('owner', $user->group)->orderBy('created_at', 'desc')->get();
       $admins = User::where('roll', 1)->orderBy('created_at', 'desc')->get();
