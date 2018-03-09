@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-3/css/fontastic.css">
     <link rel="icon" href="http://grupoheygar.com/wp-content/uploads/2017/03/cropped-LOG.fw_-192x192.png" sizes="192x192" />
+
+    <script src="{{ mix('js/app.js') }}"></script>
   </head>
   <body>
     <!-- Side Navbar -->
@@ -118,7 +120,5 @@
         </div>
       </footer>
     </div>
-
-    <script src="{{ mix('js/app.js') }}"></script>
   </body>
 </html>

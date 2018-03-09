@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/products/{product}/message', 'ProductsController@createMessage')->middleware(CheckProduct::class);
   Route::post('/products/create', 'ProductsController@create')->middleware(CheckRoll::class);
   Route::post('/products/{product}/update', 'ProductsController@update')->middleware(CheckRoll::class);
+  Route::post('/products/{product}/coment', 'ProductsController@createComent')->middleware(CheckRoll::class);
   Route::post('/products/{product}/delete', 'ProductsController@delete')->middleware(CheckRoll::class);
   Route::get('api/products/{product}/responses', 'ProductsController@responses')->middleware(CheckRoll::class);
   //

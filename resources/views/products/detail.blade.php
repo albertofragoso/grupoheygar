@@ -172,6 +172,30 @@
                     </div>
                   </form>
                 </div>
+                <button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-primary">Mensajear </button>
+                <!-- Modal-->
+                <div id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                  <form action="/products/{{ $product->id }}/coment" method="post">
+                    {{ csrf_field() }}
+                    <div role="document" class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 id="exampleModalLabel" class="modal-title">Nuevo mensaje</h5>
+                          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>{{ $product->name }}.</p>
+                            <div class="form-group">
+                              <input type="text" name="message" placeholder="..." class="form-control form-control-lg" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -235,4 +259,14 @@ function checkPercentage(){
   }
 }
 </script>
+
+  @if (Auth::user()->roll)
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-3/vendor/messenger-hubspot/build/js/messenger.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-3/vendor/messenger-hubspot/build/js/messenger-theme-flat.js"></script>
+    <script>$(function(){
+      @foreach($product->messages as $message)
+        Messenger.options={extraClasses:"messenger-fixed messenger-on-top  messenger-on-right",theme:"flat",messageDefaults:{showCloseButton:!0}},Messenger().post({message:"{{$message->user->name}} dijo:<br>{{$message->message}}<br><small>{{$message->created_at->format('d/m/Y')}}</small>",type:"success"})
+      @endforeach
+    });</script>
+  @endif
 @endsection

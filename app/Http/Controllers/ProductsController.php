@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\User;
 use App\Response;
+use App\Message;
 use App\Notifications\ProductMessage;
+use App\Notifications\ProductComent;
 use App\Notifications\ProductUpdate;
 use App\Notifications\ProductCreate;
 use App\Http\Requests\CreateProductRequest;
@@ -59,11 +61,13 @@ class ProductsController extends Controller
       //dd($product->responses->load('user'));
       $notifications = $request->user()->notifications->take(5);
       $count = count($notifications);
+      $messages = $product->messages->take(5);
 
       return view('products.detail', [
         'product' => $product,
         'notifications' => $notifications,
         'count' => $count,
+        'messages' => $messages,
       ]);
   }
 
@@ -125,6 +129,28 @@ class ProductsController extends Controller
 
 
     return redirect('/products/'.$product->id)->withSuccess('Comentario agregado.');
+  }
+
+  public function createComent(Request $request, Product $product)
+  {
+    $this->validate($request, [
+      'message' => 'required'
+    ], [
+      'message.required' => 'Lo sentimos. Debes dejar un comentario.'
+    ]);
+
+    $user = $request->user();
+    $admins = User::admins()->where('group', $user->group)->where('id', '!=', $user->id)->get();
+
+    $message = Message::create([
+      'product_id' => $product->id,
+      'user_id' => $user->id,
+      'message' => $request->input('message'),
+    ]);
+
+    Notification::send($admins, new ProductComent($user, $product));
+
+    return redirect('/products/'.$product->id)->withSuccess('Mensaje enviado.');
   }
 
   public function update(Product $product, Request $request) {
