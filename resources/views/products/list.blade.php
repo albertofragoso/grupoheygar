@@ -97,4 +97,19 @@
     </div>
   </div>
 </section>
+<script>
+$('#customer').change(event => {
+  $.get(`/sucursales/${event.target.value}`, function(res, sta){
+    $("#sucursal").empty();
+    if(Object.keys(res).length === 0) {
+      $("#sucursal").append(`<option value=''>Este cliente no tiene sucursales</option>`);
+    }
+    else {
+      res.forEach(element => {
+        $("#sucursal").append(`<option value='${element.id}'>${element.name}</option>`);
+      });
+    }
+  });
+});
+</script>
 @endsection

@@ -259,14 +259,11 @@ function checkPercentage(){
   }
 }
 </script>
-
-  @if (Auth::user()->roll)
-    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-3/vendor/messenger-hubspot/build/js/messenger.min.js"></script>
-    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-3/vendor/messenger-hubspot/build/js/messenger-theme-flat.js"></script>
-    <script>$(function(){
-      @foreach($product->messages as $message)
-        Messenger.options={extraClasses:"messenger-fixed messenger-on-top  messenger-on-right",theme:"flat",messageDefaults:{showCloseButton:!0}},Messenger().post({message:"{{$message->user->name}} dijo:<br>{{$message->message}}<br><small>{{$message->created_at->format('d/m/Y')}}</small>",type:"success"})
-      @endforeach
-    });</script>
-  @endif
+@if (Auth::user()->roll)
+  <script>$(function(){
+    @foreach($product->messages as $message)
+      Messenger.options={extraClasses:"messenger-fixed messenger-on-top  messenger-on-right",theme:"flat",messageDefaults:{showCloseButton:!0}},Messenger().post({message:"{{$message->user->name}} dijo:<br>{{$message->message}}<br><small>{{$message->created_at->format('d/m/Y')}}</small>",type:"success"})
+    @endforeach
+  });</script>
+@endif
 @endsection

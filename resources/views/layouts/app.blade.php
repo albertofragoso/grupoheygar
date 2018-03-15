@@ -13,6 +13,7 @@
     <link rel="icon" href="http://grupoheygar.com/wp-content/uploads/2017/03/cropped-LOG.fw_-192x192.png" sizes="192x192" />
 
     <script src="{{ mix('js/app.js') }}"></script>
+
   </head>
   <body>
     <!-- Side Navbar -->
