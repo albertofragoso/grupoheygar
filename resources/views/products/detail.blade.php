@@ -55,6 +55,12 @@
         </div>
         @if (Auth::user()->roll)
           <div class="row">
+            <div class="col-lg-1 col-sm-12">
+              <div class="form-group">
+                <label>Folio</label>
+                <p>A000{{ $product->id }}</p>
+              </div>
+            </div>
             <div class="col-lg-2 col-sm-12">
               <div class="form-group">
                 <label>Cliente</label>
@@ -89,7 +95,7 @@
                 <p>{{ date('d/m/Y', strtotime($product->finished_at)) }}</p>
               </div>
             </div>
-            <div class="col-lg-2 col-sm-12">
+            <div class="col-lg-1 col-sm-12">
               <div class="form-group">
                 <label>Facturado </label>
                 @if ($product->bill)

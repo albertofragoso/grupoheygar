@@ -4,6 +4,7 @@
     <table id="datatable1" style="width: 90%;" class="table">
       <thead>
         <tr>
+          <th>Folio</th>
           <th>Nombre</th>
           <th>Cliente</th>
           <th>Porcentaje</th>
@@ -17,6 +18,9 @@
       <tbody>
         @foreach($products as $product)
         <tr>
+          <td>
+            A000{{ $product->id }}
+          </td>
           <td>
             <a href="/products/{{ $product->id }}" class="text-muted">{{ $product->name }}</a>
           </td>
